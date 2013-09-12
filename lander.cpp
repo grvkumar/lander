@@ -27,7 +27,27 @@ using namespace std;
 void autopilot (void)
   // Autopilot to adjust the engine throttle, parachute and attitude control
 {
-  // INSERT YOUR CODE HERE
+	const double K_H = 0.065;
+	const double K_P = 10.0;
+	const double DELTA = 0.3;
+
+	double h = position.abs() - MARS_RADIUS;
+	double e = -1.0*(0.5 + K_H*h + velocity*position.norm());
+	
+	double p_out = K_P*e;
+	
+	if(p_out <= -1.0*DELTA)
+	{
+		throttle = 0.0;
+	}
+	else if (p_out < 1.0 - DELTA)
+	{
+		throttle = p_out + DELTA;
+	}
+	else
+	{
+		throttle = 1.0;
+	}		 
 
 
 }
