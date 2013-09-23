@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 CC = g++
+=======
+CC = clang++
+>>>>>>> 2565d7cf5b80306d9f1fe6288474385bc9fcb7b6
 CCSW = -O3
 PLATFORM = `uname`
 

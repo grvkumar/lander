@@ -1652,6 +1652,10 @@ vector3d thrust_wrt_world (void)
   return b;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2565d7cf5b80306d9f1fe6288474385bc9fcb7b6
 void update_lander_state (void)
   // The GLUT idle function, called every time round the event loop
 {

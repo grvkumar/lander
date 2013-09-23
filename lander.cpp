@@ -16,6 +16,7 @@
 #include "lander.h"
 #include <stdio.h>
 #include <iostream>
+<<<<<<< HEAD
 #include <cmath>
 
 #define VERLET //use the verlet integrator, alternatively define EULER
@@ -39,6 +40,28 @@ void autopilot (void)
 
 	double p_out = K_P*e;
 
+=======
+
+
+#define VERLET
+
+using namespace std;
+
+
+
+void autopilot (void)
+  // Autopilot to adjust the engine throttle, parachute and attitude control
+{
+	const double K_H = 0.065;
+	const double K_P = 10.0;
+	const double DELTA = 0.3;
+
+	double h = position.abs() - MARS_RADIUS;
+	double e = -1.0*(0.5 + K_H*h + velocity*position.norm());
+	
+	double p_out = K_P*e;
+	
+>>>>>>> 2565d7cf5b80306d9f1fe6288474385bc9fcb7b6
 	if(p_out <= -1.0*DELTA)
 	{
 		throttle = 0.0;
@@ -50,12 +73,18 @@ void autopilot (void)
 	else
 	{
 		throttle = 1.0;
+<<<<<<< HEAD
 	}	
 
 	if( e > 1.0 && safe_to_deploy_parachute())
 	{
 		parachute_status = DEPLOYED;
 	}
+=======
+	}		 
+
+
+>>>>>>> 2565d7cf5b80306d9f1fe6288474385bc9fcb7b6
 }
 
 void numerical_dynamics (void)
@@ -63,6 +92,7 @@ void numerical_dynamics (void)
   // lander's pose. The time step is delta_t (global variable).
 {
 
+<<<<<<< HEAD
 	// List of forces to consider for accelerations
 	vector3d grav_attraction;
 	vector3d thrust;
@@ -71,6 +101,16 @@ void numerical_dynamics (void)
 	vector3d net_acc;
 
     // Mass of lander
+=======
+	  // List of forces to consider for accelerations
+	  vector3d grav_attraction;
+	  vector3d thrust;
+	  vector3d atm_drag;
+	  vector3d chute_drag;
+	  vector3d net_acc;
+
+    // Mass of landerprintf("%f %f \n"printf("%f %f \n",position, velocity);,position, velocity);
+>>>>>>> 2565d7cf5b80306d9f1fe6288474385bc9fcb7b6
     double mass_lander = UNLOADED_LANDER_MASS - (1-fuel)*FUEL_CAPACITY*FUEL_DENSITY;
 
     // Calculate acceleration due to gravitional attraction
@@ -80,7 +120,11 @@ void numerical_dynamics (void)
     thrust = thrust_wrt_world()/mass_lander;
 
     // Calculate the acceleration due to atmospheric drag
+<<<<<<< HEAD
     atm_drag = -0.25*((atmospheric_density(position)*DRAG_COEF_LANDER*LANDER_SIZE*LANDER_SIZE*PI*velocity.abs2())*velocity.norm())/mass_lander;
+=======
+    atm_drag = -0.5*((atmospheric_density(position)*DRAG_COEF_LANDER*LANDER_SIZE*LANDER_SIZE*PI*velocity.abs2())*velocity.norm())/mass_lander;
+>>>>>>> 2565d7cf5b80306d9f1fe6288474385bc9fcb7b6
 
 
     // Calculate the acceleration due to drag due to parachutes
@@ -97,9 +141,16 @@ void numerical_dynamics (void)
 
     net_acc = grav_attraction + thrust + atm_drag + chute_drag;
 
+<<<<<<< HEAD
 #ifdef VERLET
 	// Update position and velocity using the Euler algorithm
     static vector3d prev_position(position), prev_velocity(velocity), prev_acc(net_acc);
+=======
+   // Update position and velocity using the Euler algorithm
+    static vector3d prev_position(position), prev_velocity(velocity), prev_acc(net_acc);
+
+#ifdef VERLET
+>>>>>>> 2565d7cf5b80306d9f1fe6288474385bc9fcb7b6
     vector3d temp = position;
     vector3d temp_v = velocity;
     vector3d temp_a = net_acc;
@@ -153,7 +204,11 @@ void initialize_simulation (void)
   scenario_description[3] = "polar launch at escape velocity (but drag prevents escape)";
   scenario_description[4] = "elliptical orbit that clips the atmosphere and decays";
   scenario_description[5] = "descent from 200km";
+<<<<<<< HEAD
   scenario_description[6] = "geostationary orbit";
+=======
+  scenario_description[6] = "";
+>>>>>>> 2565d7cf5b80306d9f1fe6288474385bc9fcb7b6
   scenario_description[7] = "";
   scenario_description[8] = "";
   scenario_description[9] = "";
@@ -239,6 +294,7 @@ void initialize_simulation (void)
     break;
 
   case 6:
+<<<<<<< HEAD
 	// a geostationary orbit
 
 	position = vector3d(dist_geostat, 0.0, 0.0);
@@ -248,6 +304,8 @@ void initialize_simulation (void)
     parachute_status = NOT_DEPLOYED;
     stabilized_attitude = false;
     autopilot_enabled = false;
+=======
+>>>>>>> 2565d7cf5b80306d9f1fe6288474385bc9fcb7b6
     break;
 
   case 7:

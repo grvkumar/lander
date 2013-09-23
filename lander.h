@@ -13,9 +13,15 @@
 // ahg@eng.cam.ac.uk and gc121@eng.cam.ac.uk.
 
 // Some reports suggest that Dev-C++/MinGW does not define WIN32
+<<<<<<< HEAD
 
 #define WIN32
 
+=======
+#if defined (__MINGW32__) && !defined (WIN32)
+#define WIN32
+#endif
+>>>>>>> 2565d7cf5b80306d9f1fe6288474385bc9fcb7b6
 
 #ifdef WIN32
 #define _USE_MATH_DEFINES
@@ -87,7 +93,11 @@
 #define THROTTLE_GRANULARITY 20 // for manual control
 #define MAX_IMPACT_GROUND_SPEED 1.0 // (m/s)
 #define MAX_IMPACT_DESCENT_RATE 1.0 // (m/s)
+<<<<<<< HEAD
 #define PI 3.14159265359
+=======
+
+>>>>>>> 2565d7cf5b80306d9f1fe6288474385bc9fcb7b6
 using namespace std;
 
 class vector3d {
@@ -178,6 +188,11 @@ bool stabilized_attitude, autopilot_enabled, parachute_lost;
 parachute_status_t parachute_status;
 int stabilized_attitude_angle;
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 2565d7cf5b80306d9f1fe6288474385bc9fcb7b6
 // Orbital and closeup view parameters
 double orbital_zoom, save_orbital_zoom, closeup_offset, closeup_xr, closeup_yr, terrain_angle;
 quat_t orbital_quat;
@@ -198,6 +213,10 @@ extern string scenario_description[];
 extern vector3d position, orientation, velocity;
 extern parachute_status_t parachute_status;
 extern int stabilized_attitude_angle;
+<<<<<<< HEAD
+=======
+const double PI = 3.1415926535;
+>>>>>>> 2565d7cf5b80306d9f1fe6288474385bc9fcb7b6
 
 #endif
 
